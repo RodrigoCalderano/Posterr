@@ -1,8 +1,15 @@
 object DefaultConfig {
     val appId = "com.example.posterr"
     val minSdk = 21
-    val targetSdk = 32
-    val compileSdk = 32
+    val targetSdk = 33
+    val compileSdk = 33
+}
+
+object Modules {
+    val home = ":features:home"
+    val profile = ":features:profile"
+    val models = ":core:models"
+    val navigation = ":core:navigation"
 }
 
 object Versions {
@@ -12,7 +19,7 @@ object Versions {
     const val GRADLE_TOOLS_VERSION = "4.2.1"
 
     const val FRAGMENT_VERSION = "1.3.3"
-    const val LIFECYCLE_VERSION = "2.3.1"
+    const val LIFECYCLE_VERSION = "2.5.1"
     const val JETPACK_NAVIGATION_VERSION = "2.3.5"
 
     const val RETROFIT_VERSION = "2.9.0"
@@ -83,6 +90,8 @@ object Libs {
     // Fragments
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
     val viewModels = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
+    val viewModelJ = "androidx.lifecycle:lifecycle-viewmodel:${Versions.LIFECYCLE_VERSION}"
+    val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE_VERSION}"
 
     // SwipeRefresh layout
     val swipeRefreshLayout =

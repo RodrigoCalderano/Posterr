@@ -6,6 +6,7 @@
       <module name="Posterr.buildSrc" target="11" />
       <module name="Posterr.buildSrc.main" target="11" />
       <module name="Posterr.buildSrc.test" target="11" />
+      <module name="Posterr.core.navigation" target="11" />
       <module name="Posterr.features.home" target="11" />
       <module name="Posterr.features.profile" target="11" />
     </bytecodeTargetLevel>

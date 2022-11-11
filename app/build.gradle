@@ -33,6 +33,10 @@ android {
 
 dependencies {
 
+    implementation project(Modules.navigation)
+    implementation project(Modules.home)
+    implementation project(Modules.profile)
+
     implementation Libs.androidxCore
     implementation Libs.androidxAppCompat
     implementation Libs.googleMaterial

@@ -35,6 +35,9 @@ dependencies {
     implementation Libs.androidxAppCompat
     implementation Libs.googleMaterial
     implementation Libs.androidXConstraintLayout
+    implementation Libs.lifecycleLivedata
+    implementation Libs.viewModels
+    implementation Libs.viewModelJ
     testImplementation Libs.junit4
     androidTestImplementation Libs.junitExt
     androidTestImplementation Libs.espresso
