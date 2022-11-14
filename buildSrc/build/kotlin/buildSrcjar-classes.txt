@@ -1,1 +1,0 @@
-C:\Users\Rodrigo\Desktop\Posterr\buildSrc\build\classes\kotlin\main\DefaultConfig.class;C:\Users\Rodrigo\Desktop\Posterr\buildSrc\build\classes\kotlin\main\Libs.class;C:\Users\Rodrigo\Desktop\Posterr\buildSrc\build\classes\kotlin\main\Modules.class;C:\Users\Rodrigo\Desktop\Posterr\buildSrc\build\classes\kotlin\main\Versions.class
