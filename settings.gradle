@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Posterr"
 include ':app'
+include ':features:home'
+include ':features:profile'
+include ':core:models'
+include ':core:navigation'

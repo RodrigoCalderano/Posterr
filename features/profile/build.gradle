@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
 }
 
@@ -7,13 +7,11 @@ android {
     compileSdk DefaultConfig.compileSdk
 
     defaultConfig {
-        applicationId DefaultConfig.appId
         minSdk DefaultConfig.minSdk
         targetSdk DefaultConfig.targetSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -33,14 +31,13 @@ android {
 
 dependencies {
 
-    implementation project(Modules.navigation)
-    implementation project(Modules.home)
-    implementation project(Modules.profile)
-
     implementation Libs.androidxCore
     implementation Libs.androidxAppCompat
     implementation Libs.googleMaterial
     implementation Libs.androidXConstraintLayout
+    implementation Libs.lifecycleLivedata
+    implementation Libs.viewModels
+    implementation Libs.viewModelJ
     testImplementation Libs.junit4
     androidTestImplementation Libs.junitExt
     androidTestImplementation Libs.espresso
