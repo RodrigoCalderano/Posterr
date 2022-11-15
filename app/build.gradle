@@ -34,6 +34,8 @@ android {
 dependencies {
 
     implementation project(Modules.navigation)
+    implementation project(Modules.ui)
+    implementation project(Modules.models)
     implementation project(Modules.home)
     implementation project(Modules.profile)
 

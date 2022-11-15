@@ -10,6 +10,7 @@ object Modules {
     val profile = ":features:profile"
     val models = ":core:models"
     val navigation = ":core:navigation"
+    val ui = ":core:ui"
 }
 
 object Versions {
