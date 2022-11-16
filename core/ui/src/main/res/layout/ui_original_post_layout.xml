@@ -36,8 +36,8 @@
         android:scaleType="fitXY"
         android:src="@drawable/refresh"
         android:text="@string/repost"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/originalPostUserName" />
+        app:layout_constraintBottom_toBottomOf="@id/originalPostUserName"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/originalPostCardView"
@@ -52,6 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:textStyle="italic"
             tools:text="@string/lorem_1" />
     </androidx.cardview.widget.CardView>
 

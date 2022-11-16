@@ -15,8 +15,7 @@ internal class RepostViewHolder private constructor(itemView: View) :
         itemView.findViewById(R.id.repostOriginalPostAuthor)
     private val repostUserName: TextView = itemView.findViewById(R.id.repostUserName)
     private val repostTextView: TextView = itemView.findViewById(R.id.repostTextView)
-    private val repostButton: ImageButton =
-        itemView.findViewById(R.id.repostButton)
+    private val repostButton: ImageButton = itemView.findViewById(R.id.repostButton)
 
     fun bind(item: RepostUi) = with(item) {
         repostOriginalPostAuthor.text = item.originalPostAuthor

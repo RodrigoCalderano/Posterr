@@ -11,6 +11,7 @@ import com.example.ui.models.UiPost.Companion.ViewType.ORIGINAL_POST_UI
 import com.example.ui.models.UiPost.Companion.ViewType.QUOTE_POST_UI
 import com.example.ui.models.UiPost.Companion.ViewType.REPOST_UI
 import com.example.ui.viewholders.OriginalPostViewHolder
+import com.example.ui.viewholders.QuotePostViewHolder
 import com.example.ui.viewholders.RepostViewHolder
 
 class PostsListAdapter : ListAdapter<UiPost, RecyclerView.ViewHolder>(DefaultDiffCallback()) {
@@ -23,7 +24,7 @@ class PostsListAdapter : ListAdapter<UiPost, RecyclerView.ViewHolder>(DefaultDif
         return when (viewType) {
             ORIGINAL_POST_UI.ordinal -> OriginalPostViewHolder.from(parent)
             REPOST_UI.ordinal -> RepostViewHolder.from(parent)
-            QUOTE_POST_UI.ordinal -> TODO()
+            QUOTE_POST_UI.ordinal -> QuotePostViewHolder.from(parent)
             else -> throw InvalidViewTypeException()
         }
     }
@@ -31,7 +32,7 @@ class PostsListAdapter : ListAdapter<UiPost, RecyclerView.ViewHolder>(DefaultDif
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = getItem(position)) {
             is OriginalPostUi -> (holder as? OriginalPostViewHolder)?.bind(item)
-            is QuotePostUi -> TODO()
+            is QuotePostUi -> (holder as? QuotePostViewHolder)?.bind(item)
             is RepostUi -> (holder as? RepostViewHolder)?.bind(item)
         }
     }
