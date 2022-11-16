@@ -1,8 +1,9 @@
 package com.example.ui.models
 
-sealed class UiPosts(
+sealed class UiPost(
     open val originalPostText: String,
     open val originalPostAuthor: String,
+    open val repostClickAction: (UiPost) -> Unit,
     open val type: ViewType
 ) {
     companion object {

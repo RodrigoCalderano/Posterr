@@ -3,11 +3,11 @@
 
     <item
         android:id="@+id/nav_feature_home"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/home_adaptive_fore"
         android:title="@string/home" />
 
     <item
         android:id="@+id/nav_feature_profile"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/person_adaptive_fore"
         android:title="@string/profile" />
 </menu>

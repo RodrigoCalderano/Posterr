@@ -33,4 +33,8 @@ android {
 }
 
 dependencies {
+    implementation(Libs.androidxCore)
+    implementation(Libs.androidxAppCompat)
+    implementation(Libs.googleMaterial)
+    implementation(Libs.androidXConstraintLayout)
 }
