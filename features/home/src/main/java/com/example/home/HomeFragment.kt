@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.home.databinding.FragmentHomeBinding
 import com.example.ui.adapters.PostsListAdapter
+import com.example.ui.extensions.showRepostBottomSheet
 import com.example.ui.models.OriginalPostUi
 import com.example.ui.models.QuotePostUi
 import com.example.ui.models.RepostUi
 import com.example.ui.models.UiPost
-import com.example.ui.showRepostBottomSheet
 import kotlin.math.max
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
