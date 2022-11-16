@@ -15,6 +15,7 @@ import com.example.ui.models.OriginalPostUi
 import com.example.ui.models.QuotePostUi
 import com.example.ui.models.RepostUi
 import com.example.ui.models.UiPost
+import com.example.ui.showRepostBottomSheet
 import kotlin.math.max
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -61,7 +62,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 QuotePostUi(
                     originalPostText = "iverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
                     originalPostAuthor = "lar",
-                    repostClickAction = {},
+                    repostClickAction = { uiPostClicked ->
+                        showRepostBottomSheet(uiPostClicked, ::onRepostClicked)
+                    },
                     userNameAuthor = "RodrigoQuotador",
                     additionalQuoteText = "Achei muito interessante esse post!!!!"
                 ),
@@ -72,6 +75,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 ),
             )
         )
+    }
+
+    private fun onRepostClicked(post: UiPost, quoteText: String) {
+        Toast.makeText(
+            this@HomeFragment.context,
+            quoteText,
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun setupPosts() = with(binding.rvPosts) {
