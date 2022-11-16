@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.home.databinding.FragmentHomeBinding
 import com.example.ui.adapters.PostsListAdapter
 import com.example.ui.models.OriginalPostUi
+import com.example.ui.models.RepostUi
 import com.example.ui.models.UiPost
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -42,10 +44,17 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     originalPostAuthor = "Rodrigo",
                     repostClickAction = {}
                 ),
-                OriginalPostUi(
+                RepostUi(
                     originalPostText = "Ut ac fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
                     originalPostAuthor = "João",
-                    repostClickAction = {}
+                    repostClickAction = {
+                        Toast.makeText(
+                            this@HomeFragment.context,
+                            it.originalPostAuthor,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    },
+                    userNameAuthor = "Matheus"
                 ),
                 OriginalPostUi(
                     originalPostText = "iverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
@@ -62,16 +71,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setupPosts() = with(binding.rvPosts) {
-        val unScrollableLayoutManager = object : LinearLayoutManager(this@HomeFragment.context) {
-            override fun canScrollVertically() = false
-        }
-
         layoutManager = LinearLayoutManager(
             this@HomeFragment.context,
             LinearLayoutManager.VERTICAL,
             false
         )
-
         adapter = postsListAdapter
     }
 
