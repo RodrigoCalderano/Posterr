@@ -4,12 +4,12 @@ import android.view.WindowManager
 import android.widget.Button
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import com.example.models.domain.Post
 import com.example.ui.R
-import com.example.ui.models.UiPost
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 
-fun Fragment.showRepostBottomSheet(uiPost: UiPost, callback: (UiPost, String) -> Unit) {
+fun Fragment.showRepostBottomSheet(post: Post, callback: (Post, String?) -> Unit) {
     BottomSheetDialog(requireContext(), R.style.DialogStyle).apply {
         setContentView(layoutInflater.inflate(R.layout.repost_bottom_sheet, null))
         window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
@@ -25,7 +25,7 @@ fun Fragment.showRepostBottomSheet(uiPost: UiPost, callback: (UiPost, String) ->
         }
 
         repostBottomSheetButton?.setOnClickListener {
-            callback(uiPost, repostBottomSheetTextInput?.text.toString())
+            callback(post, repostBottomSheetTextInput?.text?.toString())
             dismiss()
         }
         show()
