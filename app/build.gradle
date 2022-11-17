@@ -39,6 +39,7 @@ dependencies {
     implementation project(Modules.home)
     implementation project(Modules.profile)
 
+    implementation Libs.koinAndroidx
     implementation Libs.androidxCore
     implementation Libs.androidxAppCompat
     implementation Libs.googleMaterial

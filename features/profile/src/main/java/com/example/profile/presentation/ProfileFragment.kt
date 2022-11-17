@@ -1,4 +1,4 @@
-package com.example.profile
+package com.example.profile.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.profile.R
 import com.example.profile.databinding.FragmentProfileBinding
 import com.example.ui.adapters.PostsListAdapter
 import com.example.ui.extensions.showRepostBottomSheet
@@ -49,21 +50,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 RepostUi(
                     originalPostText = "Ut ac fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
                     originalPostAuthor = "João",
-                    repostClickAction = {
-                        Toast.makeText(
-                            this@ProfileFragment.context,
-                            it.originalPostAuthor,
-                            Toast.LENGTH_LONG
-                        ).show()
-                    },
+                    repostClickAction = {  },
                     userNameAuthor = "Matheus"
                 ),
                 QuotePostUi(
                     originalPostText = "iverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
                     originalPostAuthor = "lar",
-                    repostClickAction = { uiPostClicked ->
-                        showRepostBottomSheet(uiPostClicked, ::onRepostClicked)
-                    },
+                    repostClickAction = { },
                     userNameAuthor = "RodrigoQuotador",
                     additionalQuoteText = "Achei muito interessante esse post!!!!"
                 ),

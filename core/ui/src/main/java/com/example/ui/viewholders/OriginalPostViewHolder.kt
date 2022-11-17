@@ -19,9 +19,7 @@ internal class OriginalPostViewHolder private constructor(itemView: View) :
     fun bind(item: OriginalPostUi) = with(item) {
         originalPostUserName.text = item.originalPostAuthor
         originalPostTextView.text = item.originalPostText
-        originalPostRepostButton.setOnClickListener {
-            repostClickAction(item)
-        }
+        originalPostRepostButton.setOnClickListener { repostClickAction() }
     }
 
     companion object {

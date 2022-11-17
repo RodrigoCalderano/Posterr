@@ -3,9 +3,9 @@ package com.example.posterr.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.example.home.HomeFragment
+import com.example.home.presentation.HomeFragment
 import com.example.posterr.R
-import com.example.profile.ProfileFragment
+import com.example.profile.presentation.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainContainerFragment : Fragment(R.layout.fragment_main_container) {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:padding="12dp"
-    tools:context=".ProfileFragment">
+    tools:context=".presentation.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profileContainer"
@@ -147,15 +147,23 @@
             app:layout_constraintTop_toBottomOf="@id/profilePostCounter"
             tools:visibility="visible" />
 
+        <View
+            android:id="@+id/profileDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey_3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileButton" />
+
         <TextView
             android:id="@+id/profileMyPosts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="@string/profile_my_posts"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileButton" />
+            app:layout_constraintTop_toBottomOf="@id/profileDivider" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPosts"
