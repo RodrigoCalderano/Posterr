@@ -36,6 +36,7 @@ dependencies {
     implementation project(Modules.ui)
     implementation project(Modules.models)
 
+    implementation Libs.koinAndroidx
     implementation Libs.androidxCore
     implementation Libs.androidxAppCompat
     implementation Libs.googleMaterial

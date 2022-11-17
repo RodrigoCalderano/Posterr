@@ -23,9 +23,7 @@ internal class QuotePostViewHolder private constructor(itemView: View) :
         quotePostUserName.text = item.userNameAuthor
         quotePostTextView.text = item.originalPostText
         quotePostText.text = item.additionalQuoteText
-        quotePostButton.setOnClickListener {
-            repostClickAction(item)
-        }
+        quotePostButton.setOnClickListener { repostClickAction() }
     }
 
     companion object {

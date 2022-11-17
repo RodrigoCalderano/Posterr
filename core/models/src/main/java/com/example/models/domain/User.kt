@@ -1,6 +1,6 @@
 package com.example.models.domain
 
-data class UserDomain(
+data class User(
     val userName: String,
     val joinedData: String,
     val originalPosts: Int,

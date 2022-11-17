@@ -21,9 +21,7 @@ internal class RepostViewHolder private constructor(itemView: View) :
         repostOriginalPostAuthor.text = item.originalPostAuthor
         repostUserName.text = item.userNameAuthor
         repostTextView.text = item.originalPostText
-        repostButton.setOnClickListener {
-            repostClickAction(item)
-        }
+        repostButton.setOnClickListener { repostClickAction() }
     }
 
     companion object {

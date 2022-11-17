@@ -33,6 +33,7 @@ android {
 }
 
 dependencies {
+    implementation(project(Modules.models))
     implementation(Libs.androidxCore)
     implementation(Libs.androidxAppCompat)
     implementation(Libs.googleMaterial)
