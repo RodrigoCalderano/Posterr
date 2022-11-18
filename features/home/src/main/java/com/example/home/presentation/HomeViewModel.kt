@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecases.AddPostUseCase
 import com.example.home.domain.GetFeedUseCase
+import com.example.home.presentation.HomeFragment.Companion.MAX_CHARACTERS
 import com.example.models.domain.Post
 import com.example.models.domain.Post.Companion.PostType.ORIGINAL_POST
 import com.example.models.domain.Post.Companion.PostType.QUOTE_POST
@@ -50,16 +51,20 @@ internal class HomeViewModel(
     }
 
     fun onPostButtonClicked(postText: String) {
-        viewModelScope.launch(context = dispatcher) {
-            addPostUseCase(
-                Post(
-                    originalPostText = postText,
-                    originalPostAuthor = EMPTY,
-                    type = ORIGINAL_POST,
-                    userNameAuthor = EMPTY
-                )
+        if (postText.length > MAX_CHARACTERS)
+            _uiState.value = HomeUiState.Toast(POST_LENGTH_EXCEEDED)
+        else addPost(postText)
+    }
+
+    private fun addPost(postText: String) = viewModelScope.launch(context = dispatcher) {
+        addPostUseCase(
+            Post(
+                originalPostText = postText,
+                originalPostAuthor = EMPTY,
+                type = ORIGINAL_POST,
+                userNameAuthor = EMPTY
             )
-        }
+        )
     }
 
     private fun onNewPostsReceived(posts: List<Post>) {
@@ -74,6 +79,7 @@ internal class HomeViewModel(
 
     companion object {
         private const val GENERIC_ERROR = "Generic Error"
+        private const val POST_LENGTH_EXCEEDED = "Post exceeded limited characters!"
         private const val EMPTY_POSTS = "Empty Posts"
         private const val EMPTY = ""
     }

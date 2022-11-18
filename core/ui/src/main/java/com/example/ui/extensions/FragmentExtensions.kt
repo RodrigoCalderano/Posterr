@@ -1,6 +1,8 @@
 package com.example.ui.extensions
 
+import android.content.Context
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -31,3 +33,8 @@ fun Fragment.showRepostBottomSheet(post: Post, callback: (Post, String) -> Unit)
         show()
     }
 }
+
+fun Fragment.closeKeyBoard() =
+    (activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).run {
+        hideSoftInputFromWindow(requireView().windowToken, 0)
+    }

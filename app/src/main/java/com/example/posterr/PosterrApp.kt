@@ -40,7 +40,6 @@ class PosterrApp : Application() {
         val dao = getKoin().get<UserDao>()
         CoroutineScope(Dispatchers.IO).launch {
             val t = dao.retrieveUser()
-            println("rodrigo $t")
         }
     }
 

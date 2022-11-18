@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import com.example.home.R
 import com.example.home.databinding.FragmentHomeBinding
 import com.example.models.domain.Post
 import com.example.ui.adapters.PostsListAdapter
+import com.example.ui.extensions.closeKeyBoard
 import com.example.ui.extensions.showRepostBottomSheet
 import com.example.ui.models.UiPost
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -50,7 +52,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun handleOnTextChanged(newText: String) = with(binding) {
         configNewPostState(newText.isNotEmpty())
-        homePostCounter.text = max(MAX_CHARACTERS - newText.length, ZERO_CHARACTERS).toString()
+        homePostCounter.text = max(MAX_CHARACTERS - newText.length, ZERO).toString()
     }
 
     private fun configNewPostState(enable: Boolean) = with(binding) {
@@ -70,9 +72,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         adapter = postsListAdapter
     }
 
-    private fun setupPostButton() {
+    private fun setupPostButton() = with(binding) {
         binding.homeButton.setOnClickListener {
             viewModel.onPostButtonClicked(binding.homeTextInputEditText.text.toString())
+            homeTextInputEditText.setText(EMPTY_TEXT)
+            closeKeyBoard()
         }
     }
 
@@ -83,14 +87,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 is HomeUiState.NewPosts -> handleNewPosts(homeUiState.posts)
                 is HomeUiState.Error -> handleErrorState(homeUiState.message)
                 is HomeUiState.Repost -> showRepostBottomSheet(homeUiState.post, ::onReposted)
+                is HomeUiState.Toast -> handleToastState(homeUiState.message)
             }
         }
-    }
-
-    private fun handleErrorState(message: String) = with(binding) {
-        homeErrorMessage.text = message
-        homeProgressBar.isVisible = false
-        homeErrorMessage.isVisible = true
     }
 
     private fun handleLoadingState(isLoading: Boolean) = with(binding) {
@@ -104,6 +103,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         postsListAdapter.submitList(posts)
     }
 
+    private fun handleErrorState(message: String) = with(binding) {
+        homeErrorMessage.text = message
+        homeProgressBar.isVisible = false
+        homeErrorMessage.isVisible = true
+    }
+
+    private fun handleToastState(message: String) =
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
     private fun onReposted(post: Post, quoteText: String) =
         viewModel.onRepostConfirmed(post, quoteText)
 
@@ -113,7 +121,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     companion object {
-        private const val MAX_CHARACTERS = 777
-        private const val ZERO_CHARACTERS = 0
+        const val MAX_CHARACTERS = 777
+        private const val ZERO = 0
+        private const val EMPTY_TEXT = ""
     }
 }

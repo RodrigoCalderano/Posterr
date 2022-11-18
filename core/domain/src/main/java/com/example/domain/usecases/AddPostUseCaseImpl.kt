@@ -14,11 +14,8 @@ internal class AddPostUseCaseImpl(
 ) : AddPostUseCase {
     override suspend operator fun invoke(post: Post) {
         val user = userRepository.getUser()
-
-        println("rodrigo $user")
-
-        updateUser(user, post)
         insertPosts(post, user)
+        updateUser(user, post)
     }
 
     private fun insertPosts(
