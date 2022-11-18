@@ -5,9 +5,12 @@ import androidx.room.Query
 import com.example.data.models.UserEntity
 
 @Dao
-internal interface UserDao : BaseDao<UserEntity> {
+interface UserDao : BaseDao<UserEntity> {
     @Query("SELECT * FROM user_table WHERE id=:forUserWithId")
     suspend fun retrieveUser(forUserWithId: Int = 1): UserEntity
+
+    @Query("SELECT * FROM user_table")
+    suspend fun getAllUsers(): List<UserEntity>?
 
     @Query(
         "UPDATE user_table SET profileOriginalPosts=:profileOriginalPosts," +

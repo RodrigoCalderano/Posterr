@@ -1,6 +1,7 @@
 package com.example.posterr
 
 import android.app.Application
+import com.example.data.dao.UserDao
 import com.example.data.di.dataModule
 import com.example.domain.di.domainModule
 import com.example.domain.repointerfaces.PostsRepository
@@ -11,9 +12,6 @@ import com.example.models.domain.User
 import com.example.profile.di.profileModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onEmpty
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -41,17 +39,23 @@ class PosterrApp : Application() {
     private fun demo() {
         // Just for Demo purposes: For this app it is considered that the user is already logged
         CoroutineScope(Dispatchers.IO).launch {
-            val userRepository = getKoin().get<UserRepository>()
-            val postsRepository = getKoin().get<PostsRepository>()
-
-            userRepository.createUser(demoUsers().first())
-            postsRepository.insertPosts(demoPosts())
+            val userDao = getKoin().get<UserDao>()
+            if (userDao.getAllUsers().isNullOrEmpty()) {
+                initDemoData()
+            }
         }
+    }
+
+    private fun initDemoData() {
+        val userRepository = getKoin().get<UserRepository>()
+        val postsRepository = getKoin().get<PostsRepository>()
+        userRepository.createUser(demoUsers().first())
+        postsRepository.insertPosts(demoPosts())
     }
 
     private fun demoUsers() = listOf(
         User(
-            userName = "Rodrigo Calderano",
+            userName = "Alexandre",
             profileDataJoined = "March 25, 2021",
             profileOriginalPosts = 0,
             profileReposts = 0,

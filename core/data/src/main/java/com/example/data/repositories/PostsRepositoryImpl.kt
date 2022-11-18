@@ -29,7 +29,8 @@ internal class PostsRepositoryImpl(
         }
     }
 
-    override fun getAllPostsFromUser(userName: String) = postsLocalDataSource.retrieveAllPosts()
+    override fun getAllPostsFromUser(userName: String) =
+        postsLocalDataSource.retrieveAllPostsFromUser(userName)
 
     override fun getTimeOfFifthLastPost(userName: String) =
         postsLocalDataSource.getTimeOfFifthLastPost(userName)
