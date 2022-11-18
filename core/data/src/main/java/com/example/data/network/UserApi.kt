@@ -12,6 +12,6 @@ internal interface UserApi {
     @GET("user")
     fun getUser(): Call<UserResponse>
 
-    @PATCH
+    @PATCH("user")
     fun updateUser(@Body updateUserBody: UpdateUserBody): Call<Unit>
 }

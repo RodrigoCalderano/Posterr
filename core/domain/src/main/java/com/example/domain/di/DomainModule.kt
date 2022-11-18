@@ -7,6 +7,6 @@ import com.example.domain.usecases.GetUserUseCaseImpl
 import org.koin.dsl.module
 
 val domainModule = module {
-    factory<AddPostUseCase> { AddPostUseCaseImpl(get(), get()) }
+    factory<AddPostUseCase> { AddPostUseCaseImpl(userRepository = get(), postsRepository = get()) }
     factory<GetUserUseCase> { GetUserUseCaseImpl(get()) }
 }
