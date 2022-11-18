@@ -9,6 +9,7 @@ object Modules {
     val home = ":features:home"
     val profile = ":features:profile"
     val models = ":core:models"
+    val data = ":core:data"
     val navigation = ":core:navigation"
     val ui = ":core:ui"
 }
@@ -46,6 +47,7 @@ object Versions {
     const val ANDROIDX_FRAGMENT_TESTING_VERSION = "1.3.3"
 
     const val DI_KOIN_VERSION = "3.0.2"
+    const val ROOM_VERSION = "2.4.3"
 }
 
 object Libs {
@@ -84,6 +86,10 @@ object Libs {
     // Coil
     val coil = "io.coil-kt:coil:${Versions.COIL_VERSION}"
 
+    val room = "androidx.room:room-runtime:${Versions.ROOM_VERSION}"
+    val roomKtx = "androidx.room:room-ktx:${Versions.ROOM_VERSION}"
+    val roomKapt = "androidx.room:room-compiler:${Versions.ROOM_VERSION}"
+
     // DI Koin
     val koinAndroidx = "io.insert-koin:koin-android:${Versions.DI_KOIN_VERSION}"
     val koinJvmTest = "io.insert-koin:koin-test-junit4:${Versions.DI_KOIN_VERSION}"
@@ -92,7 +98,8 @@ object Libs {
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
     val viewModels = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
     val viewModelJ = "androidx.lifecycle:lifecycle-viewmodel:${Versions.LIFECYCLE_VERSION}"
-    val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE_VERSION}"
+    val lifecycleLivedata =
+        "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE_VERSION}"
 
     // SwipeRefresh layout
     val swipeRefreshLayout =

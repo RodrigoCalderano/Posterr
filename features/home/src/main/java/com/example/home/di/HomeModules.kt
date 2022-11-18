@@ -8,5 +8,5 @@ import org.koin.dsl.module
 
 val homeModule = module {
     viewModel { HomeViewModel(getFeedUseCase = get()) }
-    factory<GetFeedUseCase> { GetFeedUseCaseImpl() }
+    factory<GetFeedUseCase> { GetFeedUseCaseImpl(get()) }
 }

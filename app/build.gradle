@@ -38,6 +38,7 @@ dependencies {
     implementation project(Modules.models)
     implementation project(Modules.home)
     implementation project(Modules.profile)
+    implementation project(Modules.data)
 
     implementation Libs.koinAndroidx
     implementation Libs.androidxCore
