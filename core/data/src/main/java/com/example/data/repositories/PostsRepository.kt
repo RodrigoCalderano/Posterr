@@ -5,4 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface PostsRepository {
     fun getAllPosts(): Flow<List<Post>>
+    fun insertPost(post: Post)
 }
