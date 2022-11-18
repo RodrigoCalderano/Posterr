@@ -38,6 +38,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         setupNewPostField()
         setupPosts()
+        setupPostButton()
         setupObservers()
     }
 
@@ -69,6 +70,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         adapter = postsListAdapter
     }
 
+    private fun setupPostButton() {
+        binding.homeButton.setOnClickListener {
+            viewModel.onPostButtonClicked(binding.homeTextInputEditText.text.toString())
+        }
+    }
+
     private fun setupObservers() = with(viewModel) {
         uiState.observe(viewLifecycleOwner) { homeUiState ->
             when (homeUiState) {
@@ -97,7 +104,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         postsListAdapter.submitList(posts)
     }
 
-    private fun onReposted(post: Post, quoteText: String?) =
+    private fun onReposted(post: Post, quoteText: String) =
         viewModel.onRepostConfirmed(post, quoteText)
 
     override fun onDestroyView() {

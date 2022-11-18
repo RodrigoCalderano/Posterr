@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 internal interface PostsDao : BaseDao<PostEntity> {
-    @Query("SELECT * FROM post_table")
+    @Query("SELECT * FROM post_table order by id desc")
     fun retrieveAll(): Flow<List<PostEntity>>
 
     @Query("DELETE FROM post_table")

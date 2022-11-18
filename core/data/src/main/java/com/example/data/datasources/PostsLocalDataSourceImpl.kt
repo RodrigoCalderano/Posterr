@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.map
 internal class PostsLocalDataSourceImpl(private val postsDao: PostsDao) : PostsLocalDataSource {
     override fun retrieveAllPosts() = postsDao.retrieveAll().map { it.toPostMapper() }
 
-    override fun insert(post: Post) {
+    override fun insert(post: List<Post>) {
         postsDao.insertOrUpdate(post.toPostEntity())
     }
 }

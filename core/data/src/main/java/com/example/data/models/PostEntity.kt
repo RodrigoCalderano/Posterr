@@ -16,7 +16,7 @@ data class PostEntity(
     @ColumnInfo(name = "type")
     val type: String,
     @ColumnInfo(name = "userNameAuthor")
-    val userNameAuthor: String?,
+    val userNameAuthor: String,
     @ColumnInfo(name = "additionalQuoteText")
     val additionalQuoteText: String?,
 )

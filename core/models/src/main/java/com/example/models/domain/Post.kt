@@ -4,7 +4,7 @@ data class Post(
     val originalPostText: String,
     val originalPostAuthor: String,
     val type: PostType,
-    val userNameAuthor: String? = null,
+    val userNameAuthor: String,
     val additionalQuoteText: String? = null
 ) {
     companion object {

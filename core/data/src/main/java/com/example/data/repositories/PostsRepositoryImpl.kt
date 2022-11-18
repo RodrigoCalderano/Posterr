@@ -8,5 +8,5 @@ internal class PostsRepositoryImpl(
 ) : PostsRepository {
     override fun getAllPosts() = postsLocalDataSource.retrieveAllPosts()
 
-    override fun insertPost(post: Post) = postsLocalDataSource.insert(post)
+    override fun insertPosts(post: List<Post>) = postsLocalDataSource.insert(post)
 }

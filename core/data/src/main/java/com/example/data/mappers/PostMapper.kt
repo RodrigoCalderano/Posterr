@@ -14,12 +14,12 @@ internal fun List<PostEntity>.toPostMapper() = map {
     )
 }
 
-internal fun Post.toPostEntity() =
+internal fun List<Post>.toPostEntity() = map {
     PostEntity(
-        originalPostText = originalPostText,
-        originalPostAuthor = originalPostAuthor,
-        type = type.id,
-        userNameAuthor = userNameAuthor,
-        additionalQuoteText = additionalQuoteText,
+        originalPostText = it.originalPostText,
+        originalPostAuthor = it.originalPostAuthor,
+        type = it.type.id,
+        userNameAuthor = it.userNameAuthor,
+        additionalQuoteText = it.additionalQuoteText,
     )
-
+}

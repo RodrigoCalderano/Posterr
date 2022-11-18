@@ -4,8 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.home.domain.AddPostUseCase
 import com.example.home.domain.GetFeedUseCase
 import com.example.models.domain.Post
+import com.example.models.domain.Post.Companion.PostType.ORIGINAL_POST
+import com.example.models.domain.Post.Companion.PostType.QUOTE_POST
+import com.example.models.domain.Post.Companion.PostType.REPOST
 import com.example.ui.mappers.toUiPost
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -14,10 +18,12 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.launch
 
 internal class HomeViewModel(
     getFeedUseCase: GetFeedUseCase,
-    dispatcher: CoroutineDispatcher = Dispatchers.IO
+    private val addPostUseCase: AddPostUseCase,
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<HomeUiState>(HomeUiState.Loading)
@@ -32,8 +38,29 @@ internal class HomeViewModel(
             .launchIn(viewModelScope)
     }
 
-    fun onRepostConfirmed(post: Post, quoteText: String?) {
-        println("$post \n $quoteText")
+    fun onRepostConfirmed(post: Post, quoteText: String) {
+        viewModelScope.launch(context = dispatcher) {
+            addPostUseCase(
+                post.copy(
+                    additionalQuoteText = quoteText,
+                    type = if (quoteText.isEmpty()) REPOST else QUOTE_POST,
+                    userNameAuthor = "TODO"
+                )
+            )
+        }
+    }
+
+    fun onPostButtonClicked(postText: String) {
+        viewModelScope.launch(context = dispatcher) {
+            addPostUseCase(
+                Post(
+                    originalPostText = postText,
+                    originalPostAuthor = "TODO",
+                    type = ORIGINAL_POST,
+                    userNameAuthor = "TODO"
+                )
+            )
+        }
     }
 
     private fun onNewPostsReceived(posts: List<Post>) {
