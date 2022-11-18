@@ -1,6 +1,6 @@
 object DefaultConfig {
     val appId = "com.example.posterr"
-    val minSdk = 21
+    val minSdk = 23
     val targetSdk = 33
     val compileSdk = 33
 }
@@ -9,6 +9,8 @@ object Modules {
     val home = ":features:home"
     val profile = ":features:profile"
     val models = ":core:models"
+    val domain = ":core:domain"
+    val data = ":core:data"
     val navigation = ":core:navigation"
     val ui = ":core:ui"
 }
@@ -24,6 +26,7 @@ object Versions {
     const val JETPACK_NAVIGATION_VERSION = "2.3.5"
 
     const val RETROFIT_VERSION = "2.9.0"
+    const val MOSHI_VERSION = "1.13.0"
     const val LOGGING_INTERCEPTOR_VERSION = "4.9.0"
     const val MOCK_WEB_SERVER_VERSION = "4.9.0"
 
@@ -46,6 +49,7 @@ object Versions {
     const val ANDROIDX_FRAGMENT_TESTING_VERSION = "1.3.3"
 
     const val DI_KOIN_VERSION = "3.0.2"
+    const val ROOM_VERSION = "2.4.3"
 }
 
 object Libs {
@@ -71,7 +75,11 @@ object Libs {
 
     // Retrofit
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT_VERSION}"
-    val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT_VERSION}"
+
+    val moshi = "com.squareup.moshi:moshi:${Versions.MOSHI_VERSION}"
+    val moshiKapt = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.MOSHI_VERSION}"
+    val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT_VERSION}"
+
     val interceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.LOGGING_INTERCEPTOR_VERSION}"
 
@@ -84,15 +92,21 @@ object Libs {
     // Coil
     val coil = "io.coil-kt:coil:${Versions.COIL_VERSION}"
 
+    val room = "androidx.room:room-runtime:${Versions.ROOM_VERSION}"
+    val roomKtx = "androidx.room:room-ktx:${Versions.ROOM_VERSION}"
+    val roomKapt = "androidx.room:room-compiler:${Versions.ROOM_VERSION}"
+
     // DI Koin
     val koinAndroidx = "io.insert-koin:koin-android:${Versions.DI_KOIN_VERSION}"
+    val koinCore = "io.insert-koin:koin-core:${Versions.DI_KOIN_VERSION}"
     val koinJvmTest = "io.insert-koin:koin-test-junit4:${Versions.DI_KOIN_VERSION}"
 
     // Fragments
     val fragments = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
     val viewModels = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
     val viewModelJ = "androidx.lifecycle:lifecycle-viewmodel:${Versions.LIFECYCLE_VERSION}"
-    val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE_VERSION}"
+    val lifecycleLivedata =
+        "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.LIFECYCLE_VERSION}"
 
     // SwipeRefresh layout
     val swipeRefreshLayout =

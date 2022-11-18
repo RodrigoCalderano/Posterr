@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk DefaultConfig.compileSdk
 
     defaultConfig {
         minSdk DefaultConfig.minSdk
@@ -35,6 +35,8 @@ android {
 dependencies {
     implementation project(Modules.ui)
     implementation project(Modules.models)
+    implementation project(Modules.data)
+    implementation project(Modules.domain)
 
     implementation Libs.koinAndroidx
     implementation Libs.androidxCore

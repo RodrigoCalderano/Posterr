@@ -24,28 +24,23 @@ private fun Post.toOriginalPostUi(repostCallback: (Post) -> Unit) = OriginalPost
 )
 
 private fun Post.toRepostUi(repostCallback: (Post) -> Unit): RepostUi {
-    userNameAuthor?.let { verifiedUserNameAuthor ->
-        return RepostUi(
-            originalPostText = originalPostText,
-            originalPostAuthor = originalPostAuthor,
-            repostClickAction = { repostCallback(this) },
-            userNameAuthor = verifiedUserNameAuthor
-        )
-    }
-    throw InvalidObjectException("RepostUi with missing attributes")
+    return RepostUi(
+        originalPostText = originalPostText,
+        originalPostAuthor = originalPostAuthor,
+        repostClickAction = { repostCallback(this) },
+        userNameAuthor = userNameAuthor
+    )
 }
 
 private fun Post.toQuotePostUi(repostCallback: (Post) -> Unit): QuotePostUi {
-    userNameAuthor?.let { verifiedUserNameAuthor ->
-        additionalQuoteText?.let { verifiedAdditionalQuoteText ->
-            return QuotePostUi(
-                originalPostText = originalPostText,
-                originalPostAuthor = originalPostAuthor,
-                repostClickAction = { repostCallback(this) },
-                userNameAuthor = verifiedUserNameAuthor,
-                additionalQuoteText = verifiedAdditionalQuoteText,
-            )
-        }
+    additionalQuoteText?.let { verifiedAdditionalQuoteText ->
+        return QuotePostUi(
+            originalPostText = originalPostText,
+            originalPostAuthor = originalPostAuthor,
+            repostClickAction = { repostCallback(this) },
+            userNameAuthor = userNameAuthor,
+            additionalQuoteText = verifiedAdditionalQuoteText,
+        )
     }
     throw InvalidObjectException("QuotePostUi with missing attributes")
 }

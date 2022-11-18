@@ -7,6 +7,11 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val homeModule = module {
-    viewModel { HomeViewModel(getFeedUseCase = get()) }
-    factory<GetFeedUseCase> { GetFeedUseCaseImpl() }
+    viewModel {
+        HomeViewModel(
+            getFeedUseCase = get(),
+            addPostUseCase = get(),
+        )
+    }
+    factory<GetFeedUseCase> { GetFeedUseCaseImpl(get()) }
 }

@@ -35,6 +35,8 @@ android {
 dependencies {
     implementation project(Modules.ui)
     implementation project(Modules.models)
+    implementation project(Modules.data)
+    implementation project(Modules.domain)
 
     implementation Libs.koinAndroidx
     implementation Libs.androidxCore

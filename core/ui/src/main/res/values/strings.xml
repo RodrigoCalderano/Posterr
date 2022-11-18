@@ -14,6 +14,7 @@
     <string name="number_of_reposts">"Reposts: "</string>
     <string name="number_of_quote_posts">"Quote-Posts: "</string>
     <string name="lorem_1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vitae justo porttitor, tristique turpis ac, maximus dui. Aenean volutpat erat orci, in tincidunt nisi auctor in. Maecenas tincidunt pharetra lectus, non pretium nisi mollis ullamcorper. Fusce facilisis sed metus vitae egestas. Aenean gravida neque pulvinar odio cursus suscipit. Nunc lobortis erat enim, aliquet iaculis sem sollicitudin quis. Vivamus ante mauris, scelerisque nec mattis nec, luctus et est. Proin eu eros a lectus viverra porta. Pellentesque aliquam elementum quam, ut hendrerit elit finibus quis. Vivamus nec dui eu lectus scelerisque faucibus nec non ex.</string>
+    <string name="lorem_2">Lorem ipsum</string>
     <string name="posted">" posted:"</string>
     <string name="reposted">" reposted from: "</string>
     <string name="quoted">" quoted from: "</string>
