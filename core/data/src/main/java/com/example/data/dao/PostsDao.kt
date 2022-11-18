@@ -6,7 +6,7 @@ import com.example.data.models.PostEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface PostsDao : BaseDao<PostEntity> {
+internal interface PostsDao : BaseDao<PostEntity> {
     @Query("SELECT * FROM post_table order by id desc")
     fun retrieveAll(): Flow<List<PostEntity>>
 

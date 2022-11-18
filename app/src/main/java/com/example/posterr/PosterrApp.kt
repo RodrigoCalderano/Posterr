@@ -1,8 +1,6 @@
 package com.example.posterr
 
 import android.app.Application
-import com.example.data.dao.PostsDao
-import com.example.data.dao.UserDao
 import com.example.data.di.dataModule
 import com.example.domain.di.domainModule
 import com.example.domain.repointerfaces.PostsRepository
@@ -10,8 +8,12 @@ import com.example.domain.repointerfaces.UserRepository
 import com.example.home.di.homeModule
 import com.example.models.domain.Post
 import com.example.models.domain.User
+import com.example.profile.di.profileModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEmpty
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -26,83 +28,77 @@ class PosterrApp : Application() {
             modules(
                 listOf(
                     homeModule,
+                    profileModule,
                     dataModule,
                     domainModule,
                 )
             )
         }
 
-        // demo()
-        demo2()
-        // demo3()
-        // demo4()
-    }
-
-    private fun demo4() {
-        val postsDao = getKoin().get<PostsDao>()
-        CoroutineScope(Dispatchers.IO).launch {
-            postsDao.retrieveFiveLastPostFromUser("Rodrigo")?.forEach {
-                // println("rodrigo each $it")
-            }
-        }
-    }
-
-    private fun demo3() {
-        val dao = getKoin().get<UserDao>()
-        CoroutineScope(Dispatchers.IO).launch {
-            val t = dao.retrieveUser()
-        }
-    }
-
-    private fun demo2() {
-        val repo = getKoin().get<UserRepository>()
-        CoroutineScope(Dispatchers.IO).launch {
-            repo.createUser(
-                User(
-                    userName = "Rodrigo",
-                    profileDataJoined = "23, 10 / 2000",
-                    profileOriginalPosts = 0,
-                    profileReposts = 0,
-                    profileQuotePosts = 0
-                )
-            )
-        }
+        demo()
     }
 
     private fun demo() {
-        // Just for demo purposes:
-        val repo = getKoin().get<PostsRepository>()
-
+        // Just for Demo purposes: For this app it is considered that the user is already logged
         CoroutineScope(Dispatchers.IO).launch {
-            repo.insertPosts(
-                listOf(
-                    Post(
-                        originalPostText = "========= bibendum vitae velit.",
-                        originalPostAuthor = "Rodrigo",
-                        type = Post.Companion.PostType.ORIGINAL_POST,
-                        userNameAuthor = "Rodrigo"
-                    ),
-                    Post(
-                        originalPostText = "Ut ac fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
-                        originalPostAuthor = "João",
-                        userNameAuthor = "Matheus",
-                        type = Post.Companion.PostType.REPOST
-                    ),
-                    Post(
-                        originalPostText = "iverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
-                        originalPostAuthor = "lar",
-                        userNameAuthor = "RodrigoQuotador",
-                        additionalQuoteText = "Achei muito interessante esse post!!!!",
-                        type = Post.Companion.PostType.QUOTE_POST
-                    ),
-                    Post(
-                        originalPostText = "aaaaaaaaaaaaUt ac lacus mollis, viverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
-                        originalPostAuthor = "Rodrigo",
-                        type = Post.Companion.PostType.ORIGINAL_POST,
-                        userNameAuthor = "Rodrigo"
-                    ),
-                )
-            )
+            val userRepository = getKoin().get<UserRepository>()
+            val postsRepository = getKoin().get<PostsRepository>()
+
+            userRepository.createUser(demoUsers().first())
+            postsRepository.insertPosts(demoPosts())
         }
     }
+
+    private fun demoUsers() = listOf(
+        User(
+            userName = "Rodrigo Calderano",
+            profileDataJoined = "March 25, 2021",
+            profileOriginalPosts = 0,
+            profileReposts = 0,
+            profileQuotePosts = 0
+        ),
+        User(
+            userName = "Rodrigo Barbacovi",
+            profileDataJoined = "March 24, 2021",
+            profileOriginalPosts = 1,
+            profileReposts = 0,
+            profileQuotePosts = 0
+        ),
+        User(
+            userName = "Jorge",
+            profileDataJoined = "March 23, 2021",
+            profileOriginalPosts = 0,
+            profileReposts = 1,
+            profileQuotePosts = 0
+        ),
+        User(
+            userName = "João",
+            profileDataJoined = "March 22, 2021",
+            profileOriginalPosts = 0,
+            profileReposts = 0,
+            profileQuotePosts = 1
+        ),
+    )
+
+    private fun demoPosts() = listOf(
+        Post(
+            originalPostText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel tellus sed sem viverra lobortis. Aliquam nec mollis nisl. Ut varius maximus bibendum. Sed in venenatis orci. Nulla orci metus, ultrices nec vestibulum vitae, placerat ac erat. In at ornare enim, nec pretium nisl. Donec volutpat nisi ligula.",
+            originalPostAuthor = "Rodrigo Barbacovi",
+            type = Post.Companion.PostType.ORIGINAL_POST,
+            userNameAuthor = "Rodrigo Barbacovi"
+        ),
+        Post(
+            originalPostText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel tellus sed sem viverra lobortis. Aliquam nec mollis nisl. Ut varius maximus bibendum. Sed in venenatis orci. Nulla orci metus, ultrices nec vestibulum vitae, placerat ac erat. In at ornare enim, nec pretium nisl. Donec volutpat nisi ligula.",
+            originalPostAuthor = "Rodrigo Barbacovi",
+            userNameAuthor = "Jorge",
+            type = Post.Companion.PostType.REPOST
+        ),
+        Post(
+            originalPostText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vel tellus sed sem viverra lobortis. Aliquam nec mollis nisl. Ut varius maximus bibendum. Sed in venenatis orci. Nulla orci metus, ultrices nec vestibulum vitae, placerat ac erat. In at ornare enim, nec pretium nisl. Donec volutpat nisi ligula.",
+            originalPostAuthor = "Rodrigo Barbacovi",
+            userNameAuthor = "João",
+            additionalQuoteText = "Ohh I really loved that post!!!!",
+            type = Post.Companion.PostType.QUOTE_POST
+        ),
+    )
 }

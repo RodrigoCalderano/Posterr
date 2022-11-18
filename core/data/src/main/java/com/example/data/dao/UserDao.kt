@@ -5,7 +5,7 @@ import androidx.room.Query
 import com.example.data.models.UserEntity
 
 @Dao
-interface UserDao : BaseDao<UserEntity> {
+internal interface UserDao : BaseDao<UserEntity> {
     @Query("SELECT * FROM user_table WHERE id=:forUserWithId")
     suspend fun retrieveUser(forUserWithId: Int = 1): UserEntity
 
