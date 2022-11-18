@@ -2,8 +2,8 @@ package com.example.models.domain
 
 data class User(
     val userName: String,
-    val joinedData: String,
-    val originalPosts: Int,
-    val reposts: Int,
-    val quotePosts: Int
+    val profileDataJoined: String,
+    val profileOriginalPosts: Int,
+    val profileReposts: Int,
+    val profileQuotePosts: Int
 )

@@ -17,16 +17,26 @@ internal fun List<PostEntity>.toPostMapper() = map {
 
 internal fun List<PostResponse>.toPost() = map {
     Post(
-        originalPostText = "it.originalPostText",
-        originalPostAuthor = "it.originalPostAuthor",
-        type = getTypeFromId("QUOTE_POST"),
-        userNameAuthor = "it.userNameAuthor",
-        additionalQuoteText = "it.additionalQuoteText",
+        originalPostText = it.originalPostText,
+        originalPostAuthor = it.originalPostAuthor,
+        type = getTypeFromId(it.type),
+        userNameAuthor = it.userNameAuthor,
+        additionalQuoteText = it.additionalQuoteText,
     )
 }
 
 internal fun List<Post>.toPostEntity() = map {
     PostEntity(
+        originalPostText = it.originalPostText,
+        originalPostAuthor = it.originalPostAuthor,
+        type = it.type.id,
+        userNameAuthor = it.userNameAuthor,
+        additionalQuoteText = it.additionalQuoteText,
+    )
+}
+
+internal fun List<Post>.toPostResponse() = map {
+    PostResponse(
         originalPostText = it.originalPostText,
         originalPostAuthor = it.originalPostAuthor,
         type = it.type.id,

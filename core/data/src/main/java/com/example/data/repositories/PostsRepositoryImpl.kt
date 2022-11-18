@@ -28,5 +28,8 @@ internal class PostsRepositoryImpl(
         }
     }
 
-    override fun insertPosts(post: List<Post>) = postsLocalDataSource.insert(post)
+    override fun insertPosts(posts: List<Post>) {
+        postsRemoteDataSource.uploadPost(posts) // Todo handle upload failure
+        postsLocalDataSource.insert(posts)
+    }
 }
