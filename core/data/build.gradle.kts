@@ -55,6 +55,7 @@ dependencies {
     kapt(Libs.roomKapt)
     kapt(Libs.moshiKapt)
     implementation(project(Modules.models))
+    implementation(project(Modules.domain))
     implementation(Libs.androidxCore)
     implementation(Libs.koinAndroidx)
     implementation(Libs.androidxAppCompat)

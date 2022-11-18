@@ -1,6 +1,6 @@
 package com.example.data.network
 
-sealed class NetworkResult<out T> {
+internal sealed class NetworkResult<out T> {
 
     data class Success<out T>(val data: T) : NetworkResult<T>()
 

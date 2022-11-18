@@ -16,17 +16,22 @@ import com.example.data.network.PostsApi
 import com.example.data.network.RetrofitProvider
 import com.example.data.network.RetrofitRunner
 import com.example.data.network.UserApi
-import com.example.data.repositories.PostsRepository
 import com.example.data.repositories.PostsRepositoryImpl
+import com.example.data.repositories.UserRepositoryImpl
+import com.example.domain.repointerfaces.PostsRepository
+import com.example.domain.repointerfaces.UserRepository
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
 val dataModule = module {
     factory<PostsRepository> { PostsRepositoryImpl(get(), get()) }
+    factory<UserRepository> { UserRepositoryImpl(get(), get()) }
+
     factory<PostsLocalDataSource> { PostsLocalDataSourceImpl(get()) }
+    factory<UserLocalDataSource> { UserLocalDataSourceImpl(get()) }
+
     factory<PostsRemoteDataSource> { PostsRemoteDataSourceImpl(get(), get()) }
     factory<UserRemoteDataSource> { UserRemoteDataSourceImpl(get(), get()) }
-    factory<UserLocalDataSource> { UserLocalDataSourceImpl(get()) }
 
     // DB
     single { get<AppDatabase>().postsDao() }

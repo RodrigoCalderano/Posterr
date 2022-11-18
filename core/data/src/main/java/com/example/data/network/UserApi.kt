@@ -7,7 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 
-interface UserApi {
+internal interface UserApi {
 
     @GET("user")
     fun getUser(): Call<UserResponse>

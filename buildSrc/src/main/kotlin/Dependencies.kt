@@ -9,6 +9,7 @@ object Modules {
     val home = ":features:home"
     val profile = ":features:profile"
     val models = ":core:models"
+    val domain = ":core:domain"
     val data = ":core:data"
     val navigation = ":core:navigation"
     val ui = ":core:ui"
@@ -97,6 +98,7 @@ object Libs {
 
     // DI Koin
     val koinAndroidx = "io.insert-koin:koin-android:${Versions.DI_KOIN_VERSION}"
+    val koinCore = "io.insert-koin:koin-core:${Versions.DI_KOIN_VERSION}"
     val koinJvmTest = "io.insert-koin:koin-test-junit4:${Versions.DI_KOIN_VERSION}"
 
     // Fragments

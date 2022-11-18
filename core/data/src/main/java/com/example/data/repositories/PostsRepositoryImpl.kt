@@ -4,6 +4,7 @@ import com.example.data.datasources.PostsLocalDataSource
 import com.example.data.datasources.PostsRemoteDataSource
 import com.example.data.mappers.toPost
 import com.example.data.network.NetworkResult
+import com.example.domain.repointerfaces.PostsRepository
 import com.example.models.domain.Post
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
@@ -20,7 +21,7 @@ internal class PostsRepositoryImpl(
                     is NetworkResult.Success -> {
                         val posts = data.toPost()
                         postsLocalDataSource.insert(posts)
-                        emit(data.toPost())
+                        emit(posts)
                     }
                     else -> emitAll(postsLocalDataSource.retrieveAllPosts())
                 }

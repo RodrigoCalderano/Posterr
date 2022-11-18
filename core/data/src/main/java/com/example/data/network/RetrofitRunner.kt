@@ -7,7 +7,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import retrofit2.awaitResponse
 
-class RetrofitRunner(
+internal class RetrofitRunner(
     private val connectivityManager: ConnectivityManager
 ) {
     private suspend fun <F, T> execute(

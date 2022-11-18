@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class PostResponse(
+internal data class PostResponse(
     @Json(name = "id")
     val id: Long = 0,
     @Json(name = "originalPostText")

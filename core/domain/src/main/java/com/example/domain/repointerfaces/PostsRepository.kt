@@ -1,4 +1,4 @@
-package com.example.data.repositories
+package com.example.domain.repointerfaces
 
 import com.example.models.domain.Post
 import kotlinx.coroutines.flow.Flow

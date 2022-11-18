@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.home.domain.AddPostUseCase
+import com.example.domain.usecases.AddPostUseCase
 import com.example.home.domain.GetFeedUseCase
 import com.example.models.domain.Post
 import com.example.models.domain.Post.Companion.PostType.ORIGINAL_POST
@@ -44,7 +44,6 @@ internal class HomeViewModel(
                 post.copy(
                     additionalQuoteText = quoteText,
                     type = if (quoteText.isEmpty()) REPOST else QUOTE_POST,
-                    userNameAuthor = "TODO"
                 )
             )
         }
@@ -55,9 +54,9 @@ internal class HomeViewModel(
             addPostUseCase(
                 Post(
                     originalPostText = postText,
-                    originalPostAuthor = "TODO",
+                    originalPostAuthor = EMPTY,
                     type = ORIGINAL_POST,
-                    userNameAuthor = "TODO"
+                    userNameAuthor = EMPTY
                 )
             )
         }
@@ -76,5 +75,6 @@ internal class HomeViewModel(
     companion object {
         private const val GENERIC_ERROR = "Generic Error"
         private const val EMPTY_POSTS = "Empty Posts"
+        private const val EMPTY = ""
     }
 }

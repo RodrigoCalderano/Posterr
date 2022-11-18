@@ -6,7 +6,7 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object RetrofitProvider {
+internal object RetrofitProvider {
 
     private var retrofit: Retrofit = buildRetrofit()
 

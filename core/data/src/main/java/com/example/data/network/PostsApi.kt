@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 
-interface PostsApi {
+internal interface PostsApi {
 
     @GET("posts")
     fun getPosts(): Call<List<PostResponse>>

@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class UserResponse(
+internal data class UserResponse(
     @Json(name = "id")
     val id: Long = 0,
     @Json(name = "userName")

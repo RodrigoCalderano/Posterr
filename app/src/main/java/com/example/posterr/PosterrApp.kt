@@ -1,10 +1,14 @@
 package com.example.posterr
 
 import android.app.Application
+import com.example.data.dao.UserDao
 import com.example.data.di.dataModule
-import com.example.data.repositories.PostsRepository
+import com.example.domain.di.domainModule
+import com.example.domain.repointerfaces.PostsRepository
+import com.example.domain.repointerfaces.UserRepository
 import com.example.home.di.homeModule
 import com.example.models.domain.Post
+import com.example.models.domain.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,11 +26,37 @@ class PosterrApp : Application() {
                 listOf(
                     homeModule,
                     dataModule,
+                    domainModule,
                 )
             )
         }
 
         // demo()
+        // demo2()
+        demo3()
+    }
+
+    private fun demo3() {
+        val dao = getKoin().get<UserDao>()
+        CoroutineScope(Dispatchers.IO).launch {
+            val t = dao.retrieveUser()
+            println("rodrigo $t")
+        }
+    }
+
+    private fun demo2() {
+        val repo = getKoin().get<UserRepository>()
+        CoroutineScope(Dispatchers.IO).launch {
+            repo.createUser(
+                User(
+                    userName = "Rodrigo",
+                    profileDataJoined = "23, 10 / 2000",
+                    profileOriginalPosts = 0,
+                    profileReposts = 0,
+                    profileQuotePosts = 0
+                )
+            )
+        }
     }
 
     private fun demo() {

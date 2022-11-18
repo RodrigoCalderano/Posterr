@@ -1,6 +1,6 @@
 package com.example.home.domain
 
-import com.example.data.repositories.PostsRepository
+import com.example.domain.repointerfaces.PostsRepository
 import com.example.models.domain.Post
 import kotlinx.coroutines.flow.Flow
 
