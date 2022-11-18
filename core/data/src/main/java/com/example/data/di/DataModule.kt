@@ -27,7 +27,7 @@ val dataModule = module {
     factory<PostsRepository> { PostsRepositoryImpl(get(), get()) }
     factory<UserRepository> { UserRepositoryImpl(get(), get()) }
 
-    factory<PostsLocalDataSource> { PostsLocalDataSourceImpl(get()) }
+    factory<PostsLocalDataSource> { PostsLocalDataSourceImpl(get(), get()) }
     factory<UserLocalDataSource> { UserLocalDataSourceImpl(get()) }
 
     factory<PostsRemoteDataSource> { PostsRemoteDataSourceImpl(get(), get()) }

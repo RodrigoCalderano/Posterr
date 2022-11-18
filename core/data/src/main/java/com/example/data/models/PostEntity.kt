@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "post_table")
-internal data class PostEntity(
+data class PostEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     val id: Long = 0,
@@ -19,4 +19,6 @@ internal data class PostEntity(
     val userNameAuthor: String,
     @ColumnInfo(name = "additionalQuoteText")
     val additionalQuoteText: String?,
+    @ColumnInfo(name = "timeStamp")
+    val timeStamp: Long,
 )

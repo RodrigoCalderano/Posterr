@@ -25,13 +25,14 @@ internal fun List<PostResponse>.toPost() = map {
     )
 }
 
-internal fun List<Post>.toPostEntity() = map {
+internal fun List<Post>.toPostEntity(timeStamp: Long) = map {
     PostEntity(
         originalPostText = it.originalPostText,
         originalPostAuthor = it.originalPostAuthor,
         type = it.type.id,
         userNameAuthor = it.userNameAuthor,
         additionalQuoteText = it.additionalQuoteText,
+        timeStamp = timeStamp
     )
 }
 

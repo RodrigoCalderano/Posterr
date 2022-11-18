@@ -1,6 +1,7 @@
 package com.example.posterr
 
 import android.app.Application
+import com.example.data.dao.PostsDao
 import com.example.data.dao.UserDao
 import com.example.data.di.dataModule
 import com.example.domain.di.domainModule
@@ -32,8 +33,18 @@ class PosterrApp : Application() {
         }
 
         // demo()
-        // demo2()
-        demo3()
+        demo2()
+        // demo3()
+        // demo4()
+    }
+
+    private fun demo4() {
+        val postsDao = getKoin().get<PostsDao>()
+        CoroutineScope(Dispatchers.IO).launch {
+            postsDao.retrieveFiveLastPostFromUser("Rodrigo")?.forEach {
+                // println("rodrigo each $it")
+            }
+        }
     }
 
     private fun demo3() {
