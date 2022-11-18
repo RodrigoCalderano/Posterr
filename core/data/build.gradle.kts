@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = DefaultConfig.compileSdk
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 32
+        minSdk = DefaultConfig.minSdk
+        targetSdk = DefaultConfig.targetSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -21,6 +21,18 @@ android {
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
+            )
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://my.base.url\""
+            )
+        }
+        debug {
+            buildConfigField(
+                "String",
+                "BASE_URL",
+                "\"https://my.base.url\""
             )
         }
     }
@@ -37,7 +49,11 @@ dependencies {
 
     implementation(Libs.room)
     implementation(Libs.roomKtx)
+    implementation(Libs.retrofit)
+    implementation(Libs.moshi)
+    implementation(Libs.moshiConverter)
     kapt(Libs.roomKapt)
+    kapt(Libs.moshiKapt)
     implementation(project(Modules.models))
     implementation(Libs.androidxCore)
     implementation(Libs.koinAndroidx)

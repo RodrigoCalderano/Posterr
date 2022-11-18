@@ -1,6 +1,7 @@
 package com.example.data.mappers
 
 import com.example.data.models.PostEntity
+import com.example.data.models.PostResponse
 import com.example.models.domain.Post
 import com.example.models.domain.Post.Companion.getTypeFromId
 
@@ -11,6 +12,16 @@ internal fun List<PostEntity>.toPostMapper() = map {
         type = getTypeFromId(it.type),
         userNameAuthor = it.userNameAuthor,
         additionalQuoteText = it.additionalQuoteText,
+    )
+}
+
+internal fun List<PostResponse>.toPost() = map {
+    Post(
+        originalPostText = "it.originalPostText",
+        originalPostAuthor = "it.originalPostAuthor",
+        type = getTypeFromId("QUOTE_POST"),
+        userNameAuthor = "it.userNameAuthor",
+        additionalQuoteText = "it.additionalQuoteText",
     )
 }
 

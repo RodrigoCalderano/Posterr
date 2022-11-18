@@ -1,8 +1,8 @@
 package com.example.data.datasources
 
-import com.example.models.domain.Post
-import kotlinx.coroutines.flow.Flow
+import com.example.data.models.PostResponse
+import com.example.data.network.NetworkResult
 
 internal interface PostsRemoteDataSource {
-    fun retrieveAllPosts(): Flow<List<Post>>
+    suspend fun retrieveAllPosts(): NetworkResult<List<PostResponse>>
 }

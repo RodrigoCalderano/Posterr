@@ -1,6 +1,6 @@
 object DefaultConfig {
     val appId = "com.example.posterr"
-    val minSdk = 21
+    val minSdk = 23
     val targetSdk = 33
     val compileSdk = 33
 }
@@ -25,6 +25,7 @@ object Versions {
     const val JETPACK_NAVIGATION_VERSION = "2.3.5"
 
     const val RETROFIT_VERSION = "2.9.0"
+    const val MOSHI_VERSION = "1.13.0"
     const val LOGGING_INTERCEPTOR_VERSION = "4.9.0"
     const val MOCK_WEB_SERVER_VERSION = "4.9.0"
 
@@ -73,7 +74,11 @@ object Libs {
 
     // Retrofit
     val retrofit = "com.squareup.retrofit2:retrofit:${Versions.RETROFIT_VERSION}"
-    val moshi = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT_VERSION}"
+
+    val moshi = "com.squareup.moshi:moshi:${Versions.MOSHI_VERSION}"
+    val moshiKapt = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.MOSHI_VERSION}"
+    val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.RETROFIT_VERSION}"
+
     val interceptor =
         "com.squareup.okhttp3:logging-interceptor:${Versions.LOGGING_INTERCEPTOR_VERSION}"
 
