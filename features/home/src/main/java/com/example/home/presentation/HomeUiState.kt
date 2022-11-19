@@ -7,5 +7,6 @@ sealed class HomeUiState {
     data class NewPosts(val posts: List<UiPost>) : HomeUiState()
     data class Repost(val post: Post) : HomeUiState()
     data class Error(val message: String) : HomeUiState()
+    data class Toast(val message: String) : HomeUiState()
     object Loading : HomeUiState()
 }

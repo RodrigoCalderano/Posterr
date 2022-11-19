@@ -9,17 +9,20 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.models.domain.Post
+import com.example.models.domain.User
 import com.example.profile.R
 import com.example.profile.databinding.FragmentProfileBinding
 import com.example.ui.adapters.PostsListAdapter
+import com.example.ui.extensions.closeKeyBoard
 import com.example.ui.extensions.showRepostBottomSheet
-import com.example.ui.models.OriginalPostUi
-import com.example.ui.models.QuotePostUi
-import com.example.ui.models.RepostUi
 import com.example.ui.models.UiPost
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.max
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
+
+    private val viewModel: ProfileViewModel by viewModel()
 
     private var _binding: FragmentProfileBinding? = null
     private val binding: FragmentProfileBinding get() = _binding!!
@@ -38,51 +41,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         setupNewPostField()
         setupPosts()
-
-        // TODO RODRIGO remove this
-        postsListAdapter.submitList(
-            listOf<UiPost>(
-                OriginalPostUi(
-                    originalPostText = "Ut ac lacus mollis, viverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
-                    originalPostAuthor = "Rodrigo",
-                    repostClickAction = {}
-                ),
-                RepostUi(
-                    originalPostText = "Ut ac fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
-                    originalPostAuthor = "João",
-                    repostClickAction = {  },
-                    userNameAuthor = "Matheus"
-                ),
-                QuotePostUi(
-                    originalPostText = "iverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
-                    originalPostAuthor = "lar",
-                    repostClickAction = { },
-                    userNameAuthor = "RodrigoQuotador",
-                    additionalQuoteText = "Achei muito interessante esse post!!!!"
-                ),
-                OriginalPostUi(
-                    originalPostText = "aaaaaaaaaaaaUt ac lacus mollis, viverra dolor vitae, fermentum quam. Donec interdum quis sem sed porta. Etiam vel nisl et nulla ullamcorper interdum sit amet eget dui. Nulla eleifend sodales orci quis accumsan. Morbi bibendum luctus erat, vitae aliquet arcu feugiat sed. Vestibulum a risus non mauris blandit tempus vel sit amet risus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer non mi urna. Phasellus maximus euismod eros, sit amet cursus turpis consectetur ut. Phasellus nibh diam, suscipit ut finibus tincidunt, bibendum vitae velit.",
-                    originalPostAuthor = "Rodrigo",
-                    repostClickAction = {}
-                ),
-            )
-        )
-        // TODO RODRIGO remove this - setup profile
-        with(binding) {
-            profileName.text = "Rodrigo Barbacovi"
-            profileDataJoined.text = "March 25, 2021"
-            profileOriginalPosts.text = "3"
-            profileReposts.text = "4"
-            profileQuotePosts.text = "5"
-        }
-    }
-
-    private fun onRepostClicked(post: UiPost, quoteText: String) {
-        Toast.makeText(
-            this@ProfileFragment.context,
-            quoteText,
-            Toast.LENGTH_LONG
-        ).show()
+        setupPostButton()
+        setupObservers()
     }
 
     private fun setupNewPostField() {
@@ -93,7 +53,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun handleOnTextChanged(newText: String) = with(binding) {
         configNewPostState(newText.isNotEmpty())
-        profilePostCounter.text = max(MAX_CHARACTERS - newText.length, ZERO_CHARACTERS).toString()
+        profilePostCounter.text = max(MAX_CHARACTERS - newText.length, ZERO).toString()
     }
 
     private fun configNewPostState(enable: Boolean) = with(binding) {
@@ -113,13 +73,65 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         adapter = postsListAdapter
     }
 
+    private fun setupPostButton() = with(binding) {
+        binding.profileButton.setOnClickListener {
+            viewModel.onPostButtonClicked(binding.profileTextInputEditText.text.toString())
+            profileTextInputEditText.setText(EMPTY_TEXT)
+            closeKeyBoard()
+        }
+    }
+
+    private fun setupObservers() = with(viewModel) {
+        uiState.observe(viewLifecycleOwner) { profileUiState ->
+            when (profileUiState) {
+                is ProfileUiState.Loading -> handleLoadingState(isLoading = true)
+                is ProfileUiState.UpdateScreenSuccessState -> handleSuccessState(
+                    profileUiState.posts,
+                    profileUiState.user
+                )
+                is ProfileUiState.Error -> handleErrorState(profileUiState.message)
+                is ProfileUiState.Repost -> showRepostBottomSheet(profileUiState.post, ::onReposted)
+                is ProfileUiState.Toast -> handleToastState(profileUiState.message)
+            }
+        }
+    }
+
+    private fun handleLoadingState(isLoading: Boolean) = with(binding) {
+        profileErrorMessage.isVisible = false
+        rvPosts.isVisible = !isLoading
+        profileProgressBar.isVisible = isLoading
+    }
+
+    private fun handleSuccessState(posts: List<UiPost>, user: User) = with(binding) {
+        profileDataJoined.text = user.profileDataJoined
+        profileOriginalPosts.text = user.profileOriginalPosts.toString()
+        profileReposts.text = user.profileReposts.toString()
+        profileQuotePosts.text = user.profileQuotePosts.toString()
+        profileName.text = user.userName
+        handleLoadingState(isLoading = false)
+        postsListAdapter.submitList(posts)
+    }
+
+    private fun handleErrorState(message: String) = with(binding) {
+        profileErrorMessage.text = message
+        profileProgressBar.isVisible = false
+        profileErrorMessage.isVisible = true
+    }
+
+    private fun handleToastState(message: String) =
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+
+    private fun onReposted(post: Post, quoteText: String) =
+        viewModel.onRepostConfirmed(post, quoteText)
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     companion object {
-        private const val MAX_CHARACTERS = 777
-        private const val ZERO_CHARACTERS = 0
+        const val MAX_CHARACTERS = 777
+        private const val ZERO = 0
+        private const val EMPTY_TEXT = ""
     }
 }

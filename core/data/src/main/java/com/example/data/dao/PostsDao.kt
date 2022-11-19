@@ -12,4 +12,10 @@ internal interface PostsDao : BaseDao<PostEntity> {
 
     @Query("DELETE FROM post_table")
     fun deleteAll()
+
+    @Query("SELECT * FROM post_table WHERE userNameAuthor=:userName order by id desc LIMIT 5")
+    fun retrieveFiveLastPostFromUser(userName: String): List<PostEntity>?
+
+    @Query("SELECT * FROM post_table WHERE userNameAuthor=:userName order by id desc")
+    fun retrieveAllFromUser(userName: String): Flow<List<PostEntity>>
 }

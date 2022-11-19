@@ -29,6 +29,12 @@ internal class PostsRepositoryImpl(
         }
     }
 
+    override fun getAllPostsFromUser(userName: String) =
+        postsLocalDataSource.retrieveAllPostsFromUser(userName)
+
+    override fun getTimeOfFifthLastPost(userName: String) =
+        postsLocalDataSource.getTimeOfFifthLastPost(userName)
+
     override fun insertPosts(posts: List<Post>) {
         postsRemoteDataSource.uploadPost(posts) // Todo handle upload failure
         postsLocalDataSource.insert(posts)

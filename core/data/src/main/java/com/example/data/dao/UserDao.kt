@@ -6,8 +6,11 @@ import com.example.data.models.UserEntity
 
 @Dao
 interface UserDao : BaseDao<UserEntity> {
+    @Query("SELECT * FROM user_table WHERE id=:forUserWithId")
+    suspend fun retrieveUser(forUserWithId: Int = 1): UserEntity
+
     @Query("SELECT * FROM user_table")
-    suspend fun retrieveUser(): UserEntity
+    suspend fun getAllUsers(): List<UserEntity>?
 
     @Query(
         "UPDATE user_table SET profileOriginalPosts=:profileOriginalPosts," +
@@ -19,6 +22,6 @@ interface UserDao : BaseDao<UserEntity> {
         profileOriginalPosts: Int,
         profileReposts: Int,
         profileQuotePosts: Int,
-        forUserWithId: Int = 0
+        forUserWithId: Int = 1
     ): Int
 }
