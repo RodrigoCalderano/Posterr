@@ -46,7 +46,25 @@ dependencies {
     implementation Libs.androidxAppCompat
     implementation Libs.googleMaterial
     implementation Libs.androidXConstraintLayout
-    testImplementation Libs.junit4
-    androidTestImplementation Libs.junitExt
-    androidTestImplementation Libs.espresso
+
+
+    // TODO MOVE TO LIBS!!
+    // Koin Test features
+    androidTestImplementation "io.insert-koin:koin-test:3.2.2"
+    androidTestImplementation "io.insert-koin:koin-test-junit4:3.2.2"
+    androidTestImplementation 'androidx.test:core:1.2.0'
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    // Android X and Espresso Testing
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test:monitor:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'com.google.code.findbugs:jsr305:2.0.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+    // Mockito
+    androidTestImplementation 'org.mockito:mockito-android:3.1.0'
+    // Fragments testing
+    debugImplementation 'androidx.fragment:fragment-testing:1.6.0-alpha03'
 }

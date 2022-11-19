@@ -12,4 +12,6 @@ dependencies {
     implementation(project(Modules.models))
     implementation(Libs.koinCore)
     implementation(Libs.coroutinesCore)
+    implementation(Libs.junit4)
+    testImplementation(Libs.testMockk)
 }
