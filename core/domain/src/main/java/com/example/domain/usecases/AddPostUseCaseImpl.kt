@@ -66,6 +66,6 @@ internal class AddPostUseCaseImpl(
     companion object {
         private const val ONE = 1
         private const val ZERO = 0
-        private const val ONE_DAY_IN_EPOCH_TIME = 60 * 60 * 24
+        const val ONE_DAY_IN_EPOCH_TIME = 60 * 60 * 24
     }
 }
