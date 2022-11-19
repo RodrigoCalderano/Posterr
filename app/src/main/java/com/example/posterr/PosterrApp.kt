@@ -21,6 +21,11 @@ class PosterrApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        startKoin()
+        demo()
+    }
+
+    fun startKoin() {
         startKoin {
             androidContext(this@PosterrApp)
             modules(
@@ -32,8 +37,6 @@ class PosterrApp : Application() {
                 )
             )
         }
-
-        demo()
     }
 
     private fun demo() {
