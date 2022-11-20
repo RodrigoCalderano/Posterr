@@ -4,9 +4,11 @@ Posterr is a simple project with some resemblance to Twitter but with far fewer 
 
 ## Project Structure
 
-This project structure is based on modularization, follows Clean Arch principles and uses MVVM pattern for presentation layer.
+This project structure is based on modularization, follows Clean architecture principles and uses MVVM pattern for presentation layer.
 
 ## Modules
+
+Follows [Dependency-Rule](https://khalilstemmler.com/wiki/dependency-rule/) from Clean arch, meaning that domain layer is completely agnostic of other modules and feature modules are not dependent on each other.
 
 - app module: Higher level module that controls DI
 - buildSrc: Controls lib versions
@@ -26,6 +28,7 @@ This project structure is based on modularization, follows Clean Arch principles
 ## Development setup
 
 Require the latest Android Studio to be able to build the app. (Version used to development: Chipmunk)
+
 To run the App you need a device with android API level of 23 or higher 
 
 ### Libraries
@@ -48,6 +51,8 @@ What still need to be improved and developed:
 To tackle the app growth, implementing a paging strategy will definitely be needed. One library that could be used is [Paging](https://developer.android.com/topic/libraries/architecture/paging)
 
 Still on the app growth thought, Feature Flag and Analytics Tracking strategies would also be appropriate to to collect data and make business decisions.
+
+If the application's code base and development team grows and the build time increases, changing from gradle to buck or bazel should be considered.
 
 To ensure good performance on all devices, the following strategies would help the app to run more optimally:
 
