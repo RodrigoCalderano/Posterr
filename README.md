@@ -1,4 +1,4 @@
-# Posterr
+# Posterr - Rodrigo Calderano Barbacovi
 
 Posterr is a simple project with some resemblance to Twitter but with far fewer features.
 
