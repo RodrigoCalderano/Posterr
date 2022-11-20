@@ -48,7 +48,7 @@ dependencies {
     implementation Libs.androidXConstraintLayout
 
 
-    // TODO MOVE TO LIBS!!
+    // TODO MOVE TO BUILD SRC - LIBS!!
     // Koin Test features
     androidTestImplementation "io.insert-koin:koin-test:3.2.2"
     androidTestImplementation "io.insert-koin:koin-test-junit4:3.2.2"
