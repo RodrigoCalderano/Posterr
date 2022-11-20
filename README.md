@@ -40,14 +40,17 @@ To run the App you need a device with android API level of 23 or higher
 ### Critique
 
 What still need to be improved and developed:
+
 - Improve UI using a more appropriate design
 - Restructure the post creation feature to a common presentation layer component inside core:ui
 - Implement the rest of unit tests and increase the test coverage
 
 To tackle the app growth, implementing a paging strategy will definitely be needed. One library that could be used is [Paging](https://developer.android.com/topic/libraries/architecture/paging)
+
 Still on the app growth thought, Feature Flag and Analytics Tracking strategies would also be appropriate to to collect data and make business decisions.
 
 To ensure good performance on all devices, the following strategies would help the app to run more optimally:
+
 - Implement [Baseline profiles](https://developer.android.com/topic/performance/baselineprofiles/overview) to improve performance 
 - Change koin configuration to use [Scopes](https://insert-koin.io/docs/reference/koin-core/scopes) to load the dependencies only on the flow they are needed
 - Develop new features with [Don't keep activities] options turned on and a memory leak tool to assure correct ram allocation
