@@ -1,6 +1,18 @@
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
+    id("info.solidsoft.pitest") version "1.9.0"
+}
+
+configure<info.solidsoft.gradle.pitest.PitestPluginExtension> {
+    avoidCallsTo.set(setOf("kotlin.jvm.internal"))
+    mutators.set(setOf("STRONGER"))
+    targetClasses.set(setOf("com.example.domain.exampleformutation.*"))
+    targetTests.set(setOf("*"))
+    threads.set(Runtime.getRuntime().availableProcessors())
+    outputFormats.set(setOf("XML", "HTML"))
+    mutationThreshold.set(90)
+    coverageThreshold.set(90)
 }
 
 java {
