@@ -1,4 +1,4 @@
-import com.example.domain.exampleformutation.HighCyclomaticComplexity
+import com.example.domain.donotreview.HighCyclomaticComplexity
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -3,7 +3,7 @@ package com.example.posterr.mock
 import com.example.domain.repointerfaces.UserRepository
 import com.example.models.domain.User
 
-class MockUserRepository : UserRepository {
+class FakeUserRepository : UserRepository {
     override fun createUser(user: User) {
     }
 
@@ -11,11 +11,11 @@ class MockUserRepository : UserRepository {
     }
 
     override suspend fun getUser(): User {
-        return mockedUser
+        return stubUser
     }
 
     companion object {
-        val mockedUser = User(
+        val stubUser = User(
             userName = "Mocked User Name",
             profileDataJoined = "March 23, 2021",
             profileOriginalPosts = 0,

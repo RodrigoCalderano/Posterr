@@ -4,7 +4,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.domain.di.domainModule
 import com.example.home.di.homeModule
 import com.example.posterr.PosterrApp
-import com.example.posterr.mockdi.mockedModule
+import com.example.posterr.mockdi.fakeRepoModule
 import com.example.profile.di.profileModule
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
@@ -22,7 +22,7 @@ class KoinDependenciesRule : TestWatcher() {
                 homeModule,
                 profileModule,
                 domainModule,
-                mockedModule,
+                fakeRepoModule,
             )
         )
     }

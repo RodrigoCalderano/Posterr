@@ -1,4 +1,4 @@
-package com.example.domain.exampleformutation
+package com.example.domain.donotreview
 
 class HighCyclomaticComplexity {
     fun complexCode(x: Int): String {

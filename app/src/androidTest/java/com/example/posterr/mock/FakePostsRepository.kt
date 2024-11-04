@@ -5,7 +5,7 @@ import com.example.models.domain.Post
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-class MockPostsRepository : PostsRepository {
+class FakePostsRepository : PostsRepository {
     override fun getAllPosts(): Flow<List<Post>> {
         return flowOf(mockedPosts)
     }

@@ -1,5 +1,5 @@
-import MockedData.mockedPosts
-import MockedData.mockedUser
+import StubData.mockedPosts
+import StubData.mockedUser
 import com.example.domain.repointerfaces.PostsRepository
 import com.example.domain.repointerfaces.UserRepository
 import com.example.domain.time.TimeStamp

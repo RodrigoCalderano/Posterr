@@ -1,7 +1,7 @@
 import com.example.models.domain.Post
 import com.example.models.domain.User
 
-object MockedData {
+object StubData {
     val mockedUser = User(
         userName = "Mocked User Name",
         profileDataJoined = "March 23, 2021",

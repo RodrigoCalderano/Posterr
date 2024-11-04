@@ -9,7 +9,7 @@ import com.example.home.presentation.HomeFragment
 import com.example.posterr.R
 import com.example.posterr.assertions.FirstMatcher.Companion.first
 import com.example.posterr.assertions.RecyclerViewItemCountAssertion
-import com.example.posterr.mock.MockPostsRepository.Companion.mockedPosts
+import com.example.posterr.mock.FakePostsRepository.Companion.mockedPosts
 import org.hamcrest.Matchers
 import com.example.profile.R as ProfileR
 
