@@ -1,4 +1,4 @@
-package com.example.domain.exampleformutation
+package com.example.domain.donotreview
 
 class MyMutationExampleClass {
     fun compare(a: Int, b: Int) = when {
