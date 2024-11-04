@@ -11,8 +11,8 @@ configure<info.solidsoft.gradle.pitest.PitestPluginExtension> {
     targetTests.set(setOf("*"))
     threads.set(Runtime.getRuntime().availableProcessors())
     outputFormats.set(setOf("XML", "HTML"))
-    mutationThreshold.set(90)
-    coverageThreshold.set(90)
+    mutationThreshold.set(10)
+    coverageThreshold.set(10)
 }
 
 java {

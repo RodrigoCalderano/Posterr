@@ -1,4 +1,4 @@
-import MockedData.mockedUser
+import StubData.mockedUser
 import com.example.domain.repointerfaces.UserRepository
 import com.example.domain.usecases.GetUserUseCaseImpl
 import io.mockk.MockKAnnotations

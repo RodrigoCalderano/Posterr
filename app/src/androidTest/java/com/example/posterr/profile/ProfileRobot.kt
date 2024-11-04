@@ -8,8 +8,8 @@ import androidx.test.espresso.matcher.ViewMatchers
 import com.example.posterr.R
 import com.example.posterr.assertions.FirstMatcher.Companion.first
 import com.example.posterr.assertions.RecyclerViewItemCountAssertion
-import com.example.posterr.mock.MockPostsRepository.Companion.mockedPosts
-import com.example.posterr.mock.MockUserRepository.Companion.mockedUser
+import com.example.posterr.mock.FakePostsRepository.Companion.mockedPosts
+import com.example.posterr.mock.FakeUserRepository.Companion.stubUser
 import com.example.profile.presentation.ProfileFragment
 import org.hamcrest.Matchers
 import com.example.profile.R as ProfileR
@@ -21,11 +21,11 @@ class ProfileRobot {
     }
 
     fun thenProfileIsShown() = apply {
-        checkViewContainsText(mockedUser.userName)
-        checkViewContainsText(mockedUser.profileDataJoined)
-        checkViewContainsText(mockedUser.profileOriginalPosts.toString())
-        checkViewContainsText(mockedUser.profileReposts.toString())
-        checkViewContainsText(mockedUser.profileQuotePosts.toString())
+        checkViewContainsText(stubUser.userName)
+        checkViewContainsText(stubUser.profileDataJoined)
+        checkViewContainsText(stubUser.profileOriginalPosts.toString())
+        checkViewContainsText(stubUser.profileReposts.toString())
+        checkViewContainsText(stubUser.profileQuotePosts.toString())
     }
 
     fun thenPostsAreShown() = apply {
