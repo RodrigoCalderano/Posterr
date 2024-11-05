@@ -58,13 +58,16 @@ To run the App you need a device with android API level of 23 or higher
 - The core:data, core:domain and core:model are too generic and have the potential to expand indefinitely. A better approach would be to create separate common modules for each scope as needed (such as PostEngineModule).
 - To further decouple the modules, a valuable improvement would be to separate each module into public and implementation versions. This would enhance modularity and build performance during maintenance.
 
-**UI**
-- Improve UI using a more appropriate design
-- Add support for jetpack compose
-
 **Tests**
 - Add integration tests for the data layer to ensure proper functionality and guarantee accurate deserialization.
 - Implement unit tests of the remaining layers and add a code coverage guardrail
+
+**Functionality**
+- Currently, when offline or unable to upload, the app saves posts locally but doesn’t sync with the backend later. A better approach would be using WorkManager with a service component to ensure smooth synchronization between local and server data once the user is online.
+
+**UI**
+- Improve UI using a more appropriate design
+- Add support for jetpack compose
 
 ## Critique 2 - How to handle app growth
 
